@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="flappy-common-jvm">
+    <output-path>$PROJECT_DIR$/flappy-common/build/libs</output-path>
+    <root id="archive" name="flappy-common-jvm.jar">
+      <element id="module-output" name="FlappyFuralha.flappy-common.jvmMain" />
+    </root>
+  </artifact>
+</component>
