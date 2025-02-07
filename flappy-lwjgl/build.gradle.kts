@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm")
+    application
 }
 
 group = "net.perfectdreams.flappyfuralha"
@@ -41,4 +42,8 @@ tasks.test {
 
 kotlin {
     jvmToolchain(21)
+}
+
+application {
+    mainClass = "net.perfectdreams.flappyfuralha.lwjgl.FlappyFuralhaLauncher"
 }
