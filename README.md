@@ -1,5 +1,9 @@
 <p align="center">
 <img src="media/title_screen_lwjgl.png" align="center">
+<img src="media/get_ready_lwjgl.png" align="center">
+<img src="media/gameplay_lwjgl.png" align="center">
+<img src="media/game_over_lwjgl.png" align="center">
+
 </p>
 
 <h1 align="center">🐦 Flappy Furalha 🐦️</h1>
