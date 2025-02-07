@@ -24,7 +24,7 @@ But a game, *from scratch*, using OpenGL? Never! I also wanted to make a web gam
 
 ## How to Play
 
-* **Web Version:**
+* **Web Version:** https://mrpowergamerbr.github.io/FlappyFuralha/
 * **LWJGL Version:** Uuhh... I didn't setup any artifacts for it, so open the project in IntelliJ IDEA and run the `FlappyFuralhaLauncher` class inside the `flappy-lwjgl` module.
 
 ## Gameplay

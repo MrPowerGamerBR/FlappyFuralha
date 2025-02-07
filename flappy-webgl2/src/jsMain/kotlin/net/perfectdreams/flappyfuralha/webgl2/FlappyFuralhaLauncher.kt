@@ -22,7 +22,9 @@ fun main() {
     val http = HttpClient {}
 
     GlobalScope.launch {
-        val response = http.get("assets.zip")
+        val currentFolder = window.location.href.substring(0, window.location.href.lastIndexOf("/"))
+
+        val response = http.get("$currentFolder/assets.zip")
 
         val jszip = JSZip()
 
