@@ -13,6 +13,7 @@ import web.gl.WebGLProgram
 import web.gl.WebGLTexture
 import web.gl.WebGLVertexArrayObject
 import web.html.HTMLCanvasElement
+import web.html.HTMLElement
 import web.performance.performance
 import web.uievents.MouseEvent
 
@@ -47,8 +48,11 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
         canvas.addEventListener(
             MouseEvent.CLICK,
             {
-                val cursorX = it.x
-                val cursorY = it.y
+                // https://stackoverflow.com/a/42111623
+                val currentTarget = it.currentTarget as HTMLElement
+                val rect =  currentTarget.getBoundingClientRect()
+                val cursorX = it.clientX - rect.left // x position within the element.
+                val cursorY = it.clientY - rect.top  // y position within the element.
 
                 // This gets the pixel coordinate in relation of the canvas
                 println("cursorXY $cursorX, $cursorY")
