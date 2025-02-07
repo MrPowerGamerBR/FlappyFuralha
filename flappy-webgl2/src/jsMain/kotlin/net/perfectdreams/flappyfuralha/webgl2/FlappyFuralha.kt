@@ -16,6 +16,7 @@ import web.html.HTMLCanvasElement
 import web.html.HTMLElement
 import web.performance.performance
 import web.uievents.MouseEvent
+import web.uievents.TouchEvent
 
 class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
     companion object {
@@ -72,6 +73,43 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
                     (gameXPercentage * GameLogic.GAME_WIDTH).toFloat(),
                     (gameYPercentage * GameLogic.GAME_HEIGHT).toFloat()
                 )
+            }
+        )
+
+        // We use touchstart because on mobile devices it feels sluggish to use click
+        // In theory setting the viewports parameters on the page SHOULD fix this issue, but it doesn't 100% work on iOS devices (THANKS APPLE)
+        // That's why we use touch start too
+        // https://stackoverflow.com/a/27612273
+        canvas.addEventListener(
+            TouchEvent.TOUCH_START,
+            {
+                // https://stackoverflow.com/a/42111623
+                val currentTarget = it.currentTarget as HTMLElement
+                val rect =  currentTarget.getBoundingClientRect()
+                val touch = it.touches.item(0)!!
+                val cursorX = touch.clientX - rect.left // x position within the element.
+                val cursorY = touch.clientY - rect.top  // y position within the element.
+
+                // This gets the pixel coordinate in relation of the canvas
+                println("cursorXY $cursorX, $cursorY")
+
+                // Yes, we don't need to do all of this, we can do
+                // cursorX * scaleWidthDiff
+                // cursorY * scaleHeightDiff
+                // And we would get the same result
+                // But I wanted to do it like this
+                val gameXPercentage = cursorX / canvas.width
+                val gameYPercentage = cursorY / canvas.height
+
+                println("clicked at $gameXPercentage, $gameYPercentage")
+
+                // And then we pass to the game!
+                logic.onClick(
+                    (gameXPercentage * GameLogic.GAME_WIDTH).toFloat(),
+                    (gameYPercentage * GameLogic.GAME_HEIGHT).toFloat()
+                )
+
+                it.preventDefault()
             }
         )
 
