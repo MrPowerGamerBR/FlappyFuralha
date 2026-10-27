@@ -3,10 +3,11 @@ package net.perfectdreams.flappyfuralha.webgl2
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import js.buffer.ArrayBuffer
+import js.function.JsFunction
 import js.promise.Promise
-import js.typedarrays.Float32Array
+import js.promise.await
 import js.typedarrays.Uint8Array
+import js.typedarrays.toByteArray
 import js.typedarrays.toUint8Array
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -66,7 +67,7 @@ fun main() {
 suspend fun Image.awaitLoad(src: String): Image {
     return Promise { resolve, reject ->
         this.onload = EventHandler { resolve.invoke(this) }
-        this.onerror = {
+        this.onerror = JsFunction<Unit> {
             reject.invoke()
         }
         this.src = src

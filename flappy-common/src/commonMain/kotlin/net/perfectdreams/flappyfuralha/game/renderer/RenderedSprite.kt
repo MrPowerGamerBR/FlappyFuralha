@@ -1,6 +1,6 @@
-package net.perfectdreams.flappyfuralha.webgl2
+package net.perfectdreams.flappyfuralha.game.renderer
 
-import web.gl.WebGLTexture
+import net.perfectdreams.harmony.gl.textures.Texture
 
 /**
  * References a game sprite
@@ -13,5 +13,5 @@ class RenderedSprite(
     var zIndex: Int,
     var width: Float,
     var height: Float,
-    var textureId: WebGLTexture
+    var texture: Texture
 )

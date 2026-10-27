@@ -8,18 +8,17 @@ repositories {
 }
 
 kotlin {
-    jvm {
-        withJava()
-    }
+    jvm()
 
-    js(IR) {
+    js {
         browser()
     }
 
     sourceSets {
-        val commonMain by getting {
+         commonMain {
             dependencies {
                 implementation(kotlin("stdlib-common"))
+                api("net.perfectdreams.harmony:harmony-gl:0.0.1")
             }
         }
     }

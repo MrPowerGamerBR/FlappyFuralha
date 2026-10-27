@@ -1,4 +1,4 @@
-package net.perfectdreams.flappyfuralha.lwjgl
+package net.perfectdreams.flappyfuralha.game.renderer
 
 object Easings {
     fun easeLinear(start: Double, end: Double, percent: Double): Double {

@@ -12,12 +12,13 @@ repositories {
 
 val lwjglVersion = "3.3.6"
 val jomlVersion = "1.10.7"
-val lwjglNatives = "natives-windows"
+val lwjglNatives = "natives-linux"
 
 dependencies {
     implementation(project(":flappy-common"))
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+    implementation("net.perfectdreams.harmony:harmony-opengl-lwjgl:0.0.1")
 
     implementation("org.lwjgl", "lwjgl")
     implementation("org.lwjgl", "lwjgl-assimp")

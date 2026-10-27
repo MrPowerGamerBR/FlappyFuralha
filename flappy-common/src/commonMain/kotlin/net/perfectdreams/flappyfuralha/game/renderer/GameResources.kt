@@ -1,4 +1,4 @@
-package net.perfectdreams.flappyfuralha.lwjgl
+package net.perfectdreams.flappyfuralha.game.renderer
 
 class GameResources(val resourceManager: ResourceManager) {
     val furalhaTextureId = resourceManager.loadTexture("furalha.png")
