@@ -18,7 +18,7 @@ dependencies {
     implementation(project(":flappy-common"))
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
-    implementation("net.perfectdreams.harmony:harmony-opengl-lwjgl:0.0.1")
+    implementation(libs.harmony.openglLwjgl)
 
     implementation("org.lwjgl", "lwjgl")
     implementation("org.lwjgl", "lwjgl-assimp")

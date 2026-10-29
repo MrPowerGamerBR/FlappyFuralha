@@ -1,0 +1,7 @@
+[versions]
+harmony = "0.0.2"
+
+[libraries]
+harmony-gl = { module = "net.perfectdreams.harmony:harmony-gl", version.ref = "harmony" }
+harmony-openglLwjgl = { module = "net.perfectdreams.harmony:harmony-opengl-lwjgl", version.ref = "harmony" }
+harmony-webgl2 = { module = "net.perfectdreams.harmony:harmony-webgl2", version.ref = "harmony" }

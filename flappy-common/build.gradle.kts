@@ -18,7 +18,7 @@ kotlin {
          commonMain {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                api("net.perfectdreams.harmony:harmony-gl:0.0.1")
+                api(libs.harmony.gl)
             }
         }
     }

@@ -18,7 +18,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-js"))
                 implementation(project(":flappy-common"))
-                implementation("net.perfectdreams.harmony:harmony-webgl2:0.0.1")
+                implementation(libs.harmony.webgl2)
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
                 // Required for WebGL2 Bindings
