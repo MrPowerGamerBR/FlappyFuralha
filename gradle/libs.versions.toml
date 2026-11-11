@@ -1,5 +1,5 @@
 [versions]
-harmony = "0.0.2"
+harmony = "0.0.4"
 
 [libraries]
 harmony-gl = { module = "net.perfectdreams.harmony:harmony-gl", version.ref = "harmony" }
