@@ -15,18 +15,20 @@ import net.perfectdreams.flappyfuralha.game.entities.PlayButton
 import net.perfectdreams.flappyfuralha.game.entities.ScoreNumber
 import net.perfectdreams.flappyfuralha.game.entities.Tap
 import net.perfectdreams.harmony.gl.GLConstants
-import net.perfectdreams.harmony.gl.GPUResources
-import net.perfectdreams.harmony.gl.textures.Texture
-import net.perfectdreams.harmony.graphics.batcher.SpriteBatcher
+import net.perfectdreams.harmony.render.RenderDevice
+import net.perfectdreams.harmony.render.rendertarget.WindowRenderTarget
+import net.perfectdreams.harmony.render.textures.Texture
+import net.perfectdreams.harmony.render.batcher.SpriteBatcher
 import kotlin.collections.iterator
 
 class FlappyFuralhaRenderer(
     val logic: GameLogic,
-    val gpu: GPUResources,
+    val device: RenderDevice,
+    val windowRenderTarget: WindowRenderTarget,
     val shader: BasicShader,
     val gameResources: GameResources
 ) {
-    val batcher = SpriteBatcher(gpu.gl)
+    val batcher = SpriteBatcher(device.gl)
 
     // Entity -> RenderedSprite
     val renderedSprites = mutableMapOf<Entity, RenderedSprite>()
@@ -185,7 +187,7 @@ class FlappyFuralhaRenderer(
     }
 
     fun draw(interpolationPercent: Double) {
-        gpu.gl.clear(GLConstants.GL_COLOR_BUFFER_BIT or GLConstants.GL_DEPTH_BUFFER_BIT)
+        device.gl.clear(GLConstants.GL_COLOR_BUFFER_BIT or GLConstants.GL_DEPTH_BUFFER_BIT)
 
         val sortedSprites = renderedSprites
             .values
@@ -197,7 +199,7 @@ class FlappyFuralhaRenderer(
         // val projection = Matrix4f().ortho(0.0f, GameLogic.GAME_WIDTH.toFloat(), GameLogic.GAME_HEIGHT.toFloat(), 0.0f, -1.0f, 1.0f)
         val projection = floatArrayOf(0.013888889f, 0.0f, 0.0f, 0.0f, 0.0f, -0.0078125f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, -1.0f, 1.0f, -0.0f, 1.0f)
 
-        gpu.onRenderTarget(gpu.windowRenderTarget) {
+        device.onRenderTarget(windowRenderTarget) {
             withPipeline(batcher.createSpritePipeline(shader)) {
                 this.shader.uProjection.set(projection)
 

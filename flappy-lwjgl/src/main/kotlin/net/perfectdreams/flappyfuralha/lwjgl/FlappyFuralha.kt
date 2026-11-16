@@ -12,11 +12,12 @@ import net.perfectdreams.harmony.gl.GLConstants.GL_COLOR_BUFFER_BIT
 import net.perfectdreams.harmony.gl.GLConstants.GL_DEPTH_BUFFER_BIT
 import net.perfectdreams.harmony.gl.GLConstants.GL_ONE_MINUS_SRC_ALPHA
 import net.perfectdreams.harmony.gl.GLConstants.GL_SRC_ALPHA
-import net.perfectdreams.harmony.gl.GPUResources
+import net.perfectdreams.harmony.render.RenderDevice
+import net.perfectdreams.harmony.render.rendertarget.WindowRenderTarget
 import net.perfectdreams.harmony.gl.opengl.OpenGLContext
 import net.perfectdreams.harmony.gl.opengl.OpenGLDebugging
-import net.perfectdreams.harmony.gl.shaders.withProgram
-import net.perfectdreams.harmony.graphics.batcher.SpriteBatcher
+import net.perfectdreams.harmony.render.shaders.withProgram
+import net.perfectdreams.harmony.render.batcher.SpriteBatcher
 import org.joml.Matrix4f
 import org.lwjgl.Version
 import org.lwjgl.glfw.Callbacks.glfwFreeCallbacks
@@ -167,7 +168,7 @@ class FlappyFuralha {
         OpenGLDebugging.enableReportGLErrors()
 
         val gl = OpenGLContext()
-        val gpu = GPUResources(gl, windowWidth, windowHeight)
+        val gpu = RenderDevice(gl)
         val resourceManager = LWJGLResourceManager(gpu)
 
         val shader = gpu.createShader(
@@ -192,6 +193,7 @@ class FlappyFuralha {
         val renderer = FlappyFuralhaRenderer(
             logic,
             gpu,
+            WindowRenderTarget(windowWidth, windowHeight),
             shader,
             gameResources
         )

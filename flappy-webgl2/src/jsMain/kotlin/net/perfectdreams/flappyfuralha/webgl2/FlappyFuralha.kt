@@ -9,8 +9,9 @@ import net.perfectdreams.flappyfuralha.game.renderer.FlappyFuralhaRenderer
 import net.perfectdreams.flappyfuralha.game.renderer.GameResources
 import net.perfectdreams.flappyfuralha.webgl2.renderer.WebResourceManager
 import net.perfectdreams.harmony.gl.GLConstants
-import net.perfectdreams.harmony.gl.GPUResources
-import net.perfectdreams.harmony.gl.shaders.withProgram
+import net.perfectdreams.harmony.render.RenderDevice
+import net.perfectdreams.harmony.render.rendertarget.WindowRenderTarget
+import net.perfectdreams.harmony.render.shaders.withProgram
 import net.perfectdreams.harmony.gl.webgl2.WebGL2Context
 import web.animations.requestAnimationFrame
 import web.dom.clickEvent
@@ -116,7 +117,7 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
 
     private fun loop(webgl2: WebGL2RenderingContext) {
         val gl = WebGL2Context(webgl2)
-        val gpu = GPUResources(gl, webgl2.drawingBufferWidth, webgl2.drawingBufferHeight)
+        val gpu = RenderDevice(gl)
 
         // Required for transparent textures!
         gl.enable(GLConstants.GL_BLEND)
@@ -129,6 +130,7 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
         val renderer = FlappyFuralhaRenderer(
             logic,
             gpu,
+            WindowRenderTarget(webgl2.drawingBufferWidth, webgl2.drawingBufferHeight),
             shader,
             gameResources,
         )

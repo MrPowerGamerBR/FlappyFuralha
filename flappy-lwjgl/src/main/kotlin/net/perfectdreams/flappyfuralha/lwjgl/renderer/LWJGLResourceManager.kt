@@ -3,15 +3,15 @@ package net.perfectdreams.flappyfuralha.lwjgl.renderer
 import net.perfectdreams.flappyfuralha.game.renderer.ResourceManager
 import net.perfectdreams.harmony.gl.ByteArrayTextureSource
 import net.perfectdreams.harmony.gl.GLConstants
-import net.perfectdreams.harmony.gl.GPUResources
-import net.perfectdreams.harmony.gl.textures.Texture
+import net.perfectdreams.harmony.render.RenderDevice
+import net.perfectdreams.harmony.render.textures.Texture
 import org.lwjgl.opengl.GL11.GL_NEAREST
 import org.lwjgl.stb.STBImage
 import org.lwjgl.system.MemoryStack.stackPush
 import java.nio.ByteBuffer
 import kotlin.use
 
-class LWJGLResourceManager(val gpu: GPUResources) : ResourceManager {
+class LWJGLResourceManager(val device: RenderDevice) : ResourceManager {
     override fun loadTexture(path: String): Texture {
         stackPush().use { stack ->
             val width = stack.mallocInt(1)
@@ -34,7 +34,7 @@ class LWJGLResourceManager(val gpu: GPUResources) : ResourceManager {
                 .put(imageBuffer)
                 .flip()
             imageBuffer.flip()
-            val texture = gpu.createTexture(ByteArrayTextureSource(width[0], height[0], realPixels.array()), GLConstants.GL_CLAMP_TO_BORDER, GLConstants.GL_CLAMP_TO_BORDER, GLConstants.GL_NEAREST, GLConstants.GL_NEAREST)
+            val texture = device.createTexture(ByteArrayTextureSource(width[0], height[0], realPixels.array()), GLConstants.GL_CLAMP_TO_BORDER, GLConstants.GL_CLAMP_TO_BORDER, GLConstants.GL_NEAREST, GLConstants.GL_NEAREST)
             STBImage.stbi_image_free(imageBuffer)
             return texture
         }

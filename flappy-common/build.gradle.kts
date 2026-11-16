@@ -19,6 +19,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 api(libs.harmony.gl)
+                api(libs.harmony.render)
             }
         }
     }

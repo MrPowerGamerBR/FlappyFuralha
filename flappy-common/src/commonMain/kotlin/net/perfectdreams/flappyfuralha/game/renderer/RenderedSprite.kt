@@ -1,6 +1,6 @@
 package net.perfectdreams.flappyfuralha.game.renderer
 
-import net.perfectdreams.harmony.gl.textures.Texture
+import net.perfectdreams.harmony.render.textures.Texture
 
 /**
  * References a game sprite
