@@ -119,10 +119,6 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
         val gl = WebGL2Context(webgl2)
         val gpu = RenderDevice(gl)
 
-        // Required for transparent textures!
-        gl.enable(GLConstants.GL_BLEND)
-        gl.blendFunc(GLConstants.GL_SRC_ALPHA, GLConstants.GL_ONE_MINUS_SRC_ALPHA)
-
         val shader = gpu.createShader(virtualFileSystem.files["game.vsh"]!!.decodeToString(), virtualFileSystem.files["game.fsh"]!!.decodeToString(), ::BasicShader)
 
         val resourceManager = WebResourceManager(virtualFileSystem, gpu)
@@ -134,9 +130,6 @@ class FlappyFuralha(val virtualFileSystem: VirtualFileSystem) {
             shader,
             gameResources,
         )
-
-        // Set the clear color
-        gl.clearColor(1.0f, 0.0f, 0.0f, 1.0f)
 
         var totalElapsedMS = PHYSICS_TIME.toDouble() // We always want first render tick to ALSO do a physics tick to process the game
 

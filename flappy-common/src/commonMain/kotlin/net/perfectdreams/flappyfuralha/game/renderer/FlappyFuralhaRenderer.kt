@@ -19,6 +19,7 @@ import net.perfectdreams.harmony.render.RenderDevice
 import net.perfectdreams.harmony.render.rendertarget.WindowRenderTarget
 import net.perfectdreams.harmony.render.textures.Texture
 import net.perfectdreams.harmony.render.batcher.SpriteBatcher
+import net.perfectdreams.harmony.render.rendertarget.ClearOptions
 import kotlin.collections.iterator
 
 class FlappyFuralhaRenderer(
@@ -187,8 +188,6 @@ class FlappyFuralhaRenderer(
     }
 
     fun draw(interpolationPercent: Double) {
-        device.gl.clear(GLConstants.GL_COLOR_BUFFER_BIT or GLConstants.GL_DEPTH_BUFFER_BIT)
-
         val sortedSprites = renderedSprites
             .values
             .sortedBy { it.zIndex }
@@ -199,7 +198,7 @@ class FlappyFuralhaRenderer(
         // val projection = Matrix4f().ortho(0.0f, GameLogic.GAME_WIDTH.toFloat(), GameLogic.GAME_HEIGHT.toFloat(), 0.0f, -1.0f, 1.0f)
         val projection = floatArrayOf(0.013888889f, 0.0f, 0.0f, 0.0f, 0.0f, -0.0078125f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, -1.0f, 1.0f, -0.0f, 1.0f)
 
-        device.onRenderTarget(windowRenderTarget) {
+        device.onRenderTarget(windowRenderTarget, clear = ClearOptions(color = ClearOptions.Color(1.0f, 0.0f, 0.0f, 1.0f), depth = 1f)) {
             withPipeline(batcher.createSpritePipeline(shader)) {
                 this.shader.uProjection.set(projection)
 

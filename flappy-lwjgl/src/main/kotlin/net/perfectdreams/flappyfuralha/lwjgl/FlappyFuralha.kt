@@ -177,14 +177,7 @@ class FlappyFuralha {
             ::BasicShader
         )
 
-        // Required for transparent textures!
-        gl.enable(GL_BLEND)
-        gl.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-
         val gameResources = GameResources(resourceManager)
-
-        // Set the clear color
-        gl.clearColor(1.0f, 0.0f, 0.0f, 1.0f) // WATCH OUT! LWJGL example uses 0.0f for the alpha and, while that does work for LWJGL, it DOES NOT work in WebGL!
 
         var totalElapsedMS = PHYSICS_TIME.toLong() // We always want first render tick to ALSO do a physics tick to process the game
 
